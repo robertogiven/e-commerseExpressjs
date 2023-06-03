@@ -62,3 +62,23 @@ exports.getDataProduct = (req, res) => {
     data: data,
   });
 };
+
+exports.getDataProductById = (req, res) => {
+  const id = req.params.idparam;
+
+  const dataById = data.find((item) => item.id == id);
+
+  if (!dataById) {
+    return res.status(404).send({
+      response: "fail",
+      message: `Data dengan ID ${id} Tidak Ditemukan`,
+    });
+  }
+
+  return res.send({
+    response: "success",
+    message: "get data product by ID success",
+    id: id,
+    data: dataById,
+  });
+};
